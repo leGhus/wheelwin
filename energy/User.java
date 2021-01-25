@@ -1,3 +1,5 @@
+package energy;
+
 public class User {
     double weight;
     double speed;
@@ -5,6 +7,10 @@ public class User {
     public User(double weightInitializer, double speedInitializer){
         weight = weightInitializer;
         speed  = speedInitializer;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 
     public double getkineticEnergy() {

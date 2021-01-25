@@ -1,3 +1,5 @@
+package energy;
+
 public class Frame {
     double weight;
     double speed;
@@ -5,6 +7,10 @@ public class Frame {
     public Frame(double weightInitializer, double speedInitializer){
         weight = weightInitializer;
         speed  = speedInitializer;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 
     public double getkineticEnergy() {

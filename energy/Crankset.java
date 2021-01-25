@@ -1,3 +1,5 @@
+package energy;
+
 public class Crankset {
     double inertiaMomentum;
     double rpm;
@@ -5,6 +7,10 @@ public class Crankset {
     public Crankset(double inertiaMomentumInitializer, double rpmInitializer) {
         inertiaMomentum = inertiaMomentumInitializer;
         rpm = rpmInitializer;
+    }
+
+    public void setRpm(double rpm) {
+        this.rpm = rpm;
     }
 
     private double rpmToRadsec(double rpm){

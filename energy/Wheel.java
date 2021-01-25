@@ -1,4 +1,4 @@
-import java.lang.reflect.Constructor;
+package energy;
 
 public class Wheel {
     double inertiaMomentum;
@@ -9,6 +9,14 @@ public class Wheel {
         inertiaMomentum = inertiaMomentumInitializer;
         speed = speedInitializer;
         radius = radiusInitializer;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public void setInertiaMomentum(double inertiaMomentum) {
+        this.inertiaMomentum = inertiaMomentum;
     }
 
     public double getkineticEnergy() {
