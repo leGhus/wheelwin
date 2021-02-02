@@ -8,11 +8,13 @@ public class Stm {
         DecimalFormat df = new DecimalFormat("#.##");
 
         df.setRoundingMode(RoundingMode.HALF_UP);
-        double[][] data = {{0,0},{10,2.7},{20,5.5},{30,8.3},{40,8.3}};
+        double[][] data = {{0,0},{10,1.3},{20,5.5},{30,8.3},{40,8.3}};
         double energy;
         double energyConsumed;
         double totalConsumed;
         double distance = 0;
+        double energyWithWeights;
+        double speed;
         User usr = new User(70, 0);
         Frame frame = new Frame(10, 0);
         Wheel wheel = new Wheel(0);
@@ -20,16 +22,22 @@ public class Stm {
         
         for (int i = 0; i < data.length; i++) {
             if (i < data.length -1) {
-                usr.setSpeed(data[i][1]);
-                frame.setSpeed(data[i][1]);
-                wheel.setSpeed(data[i][1]);
-                extFriction.setSpeed(data[i][1]);
-                energy = usr.getkineticEnergy() + frame.getkineticEnergy();
-                energyConsumed = extFriction.getFriction(); // energy per meter
-                distance = (data[i+1][0] - data[i][0]) * data[i][1];
-                totalConsumed = energyConsumed * distance;
-                //System.out.print("energy at "+ data[i][0] + " sec :" + df.format(energy) + " J with speed " + data[i][1] + " consuming " +  df.format(energyConsumed) + " J per meter for " + distance+" meter = "+ totalConsumed+"\n");
-                System.out.println(wheel.getkineticEnergy());
+                speed = data[i][1];
+                usr.setSpeed(speed);
+                frame.setSpeed(speed);
+                wheel.setSpeed(speed);
+                extFriction.setSpeed(speed);
+                energy = frame.getkineticEnergy() + wheel.getkineticEnergy(0) + wheel.getkineticEnergy(0);
+                energyWithWeights = frame.getkineticEnergy() + wheel.getkineticEnergy(24) + wheel.getkineticEnergy(24);
+                energyConsumed = extFriction.getFriction();
+                distance = (data[i+1][0] - data[i][0]) * speed;
+                System.out.println("---------------------------------------------");
+                System.out.println("    at ( "+speed+" m/s - "+df.format(speed*3.6)+" km/h )" );
+                System.out.println("    energy : " + df.format(energy));
+                System.out.println("    wheel inertia" + df.format(wheel.getMomentum(0)));
+                System.out.println("    energy with system: " + df.format(energyWithWeights));
+                System.out.println("    wheel inertia  with weights" + df.format(wheel.getMomentum(24)));
+                System.out.println(energyConsumed);
             }
         }
     }
