@@ -1,7 +1,7 @@
 package energy;
 
 public class Wheel {
-    Inertia inertia = new Inertia(0, 0.35, 0.06);
+    Inertia inertia = new Inertia(0.05, 0.161, 0.236, 0.350, 4, 7);
     double speed;
     double radius = 0.35;
 
@@ -14,8 +14,7 @@ public class Wheel {
     }
 
     public double getkineticEnergy() {
-        inertia.setSpeed(speed);
-        double energy = 0.5 * inertia.getMomentum() * ((speed*speed)/(radius*radius));
+        double energy = 0.5 * inertia.getMomentum(speed, 24) * ((speed*speed)/(radius*radius));
         return energy;
     }
 }
