@@ -13,8 +13,8 @@ public class Inertia {
     double m; // la masse d'UN SEUL poids
     double raideur; // la raideur ATTENTION, ici on a la raideur en N/m et non en N/mm
     double hubWeight = 0.250; // poids du moyeu en kg
-    double spokeWeights = 0.1; // poids des rayons en kg
-    double rimWeight = 0.5; // poids de la jante + pneu
+    double spokeWeights = 0.2; // poids des rayons en kg
+    double rimWeight = 0.6; // poids de la jante + pneu
 
     public void setHubWeight(double hubWeight) {
         this.hubWeight = hubWeight;
@@ -46,7 +46,7 @@ public class Inertia {
         f2 = (m * speed2 * speed2) / l2;
         raideur = (f2 - f1) / (l2 - l1);
         System.out.println("---------------------------------------------");
-        System.out.println("Iniertia calculator initialized with values :");
+        System.out.println("Inertia calculator initialized with values :");
         System.out.println("    f1 = " + df.format(f1) + " N");
         System.out.println("    f2 = " + df.format(f2) + " N");
         System.out.println("    raideur = " + df.format(raideur) + " N/m");
@@ -81,9 +81,8 @@ public class Inertia {
         double momentum;
         double hubMomentum = 0.025 * 0.025 * hubWeight; // r * r * m
         double spokeMomentum = 0.315 * 0.315 * spokeWeights;
-        double rimMomentum = 0.330 * 0.3 * rimWeight; 
+        double rimMomentum = 0.330 * 0.330 * rimWeight; 
         double weightmomentum = nbOfWeight * (m * (l1 + position(speed)) * (l1 + position(speed)) );
-
         momentum = hubMomentum + spokeMomentum + rimMomentum + weightmomentum;
         return momentum;
     }
